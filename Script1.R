@@ -29,9 +29,16 @@ length(unique(df$Invoice)) # hay 28816 pedidos distintos
 # Calcular precio medio de producto por pedido
 library(dplyr)
 
-df1 <- df %>% 
-  group_by(Invoice) %>% 
-  summarise(precio_pedido = mean(Price))
-mean(df1$precio_pedido)
-# 21.84858 es el precio medio por pedido
+df1 <- df %>%
+  group_by(Invoice) %>%
+  summarise(precio_medio = mean(Price))
 
+# Calcular numero de productos por pedido
+df2 <- df %>%
+  group_by(Invoice) %>%
+  summarise(numero_productos = n())
+
+# Calcular el precio por pedido
+df3 <- df %>% 
+  group_by(Invoice) %>%
+  summarise(precio_total = sum(Price))
